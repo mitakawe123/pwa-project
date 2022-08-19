@@ -24,9 +24,9 @@ export class AppComponent implements AfterViewInit, OnInit {
   isPrompt: boolean = false;
   subscription!: Subscription;
   browserRefresh: boolean = false;
+  firsttime: string | null;
 
   @ViewChild('mymodal') mymodal: ElementRef | undefined;
-  firsttime: string | null;
 
   constructor(
     config: NgbModalConfig,
@@ -42,6 +42,7 @@ export class AppComponent implements AfterViewInit, OnInit {
         this.browserRefresh = !router.navigated;
       }
     });
+    //check if user is new
     this.firsttime = localStorage.getItem('firsttime');
 
     if (
@@ -63,6 +64,8 @@ export class AppComponent implements AfterViewInit, OnInit {
   ngAfterViewInit(): void {
     if (localStorage.getItem('firsttime') === 'true') {
       this.open(this.mymodal);
+    } else if (localStorage.getItem('firsttime') === 'false') {
+      this.modalService.dismissAll(this.mymodal);
     }
   }
 
