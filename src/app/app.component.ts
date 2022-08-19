@@ -56,10 +56,11 @@ export class AppComponent implements AfterViewInit, OnInit {
   }
 
   onSubmit(): void {
-    this.isPrompt = true;
-    if (this.isPrompt === true) {
-      navigator.serviceWorker.register('ngsw-worker.js');
-    }
+    // this.isPrompt = true;
+    // if (this.isPrompt === true) {
+    // }
+    navigator.serviceWorker.register('ngsw-worker.js');
+
   }
 
   ngAfterViewInit(): void {
