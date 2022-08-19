@@ -15,14 +15,14 @@ export class AppComponent {
   onSubmit(): void {
     this.isPrompt = true;
     ServiceWorkerModule.register('ngsw-worker.js', {
-      enabled: environment.production,
+      enabled: this.isPrompt,
     });
   }
 
   cancelDownload(): void {
     this.isPrompt = false;
     ServiceWorkerModule.register('ngsw-worker.js', {
-      enabled: false,
+      enabled: this.isPrompt,
     });
   }
 }
