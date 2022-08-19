@@ -31,9 +31,8 @@ export class AppComponent implements AfterViewInit, OnInit {
 
   constructor(
     config: NgbModalConfig,
-    private modalService: NgbModal // private activeModal: NgbActiveModal,
-  ) // private router: Router
-  {
+    private modalService: NgbModal // private activeModal: NgbActiveModal, // private router: Router
+  ) {
     config.backdrop = 'static';
     config.keyboard = false;
 
@@ -59,6 +58,13 @@ export class AppComponent implements AfterViewInit, OnInit {
     this.isPrompt = true;
     if (this.isPrompt === true) {
       navigator.serviceWorker.register('ngsw-worker.js');
+      this.modalService.dismissAll(this.mymodal);
+    }
+  }
+
+  ngAfterViewInit(): void {
+    if (localStorage.getItem('firsttime') === 'true') {
+      this.open(this.mymodal);
     }
   }
 
@@ -68,12 +74,6 @@ export class AppComponent implements AfterViewInit, OnInit {
         registration.unregister();
       }
     });
-  }
-
-  ngAfterViewInit(): void {
-    if (localStorage.getItem('firsttime') === 'true') {
-      this.open(this.mymodal);
-    }
   }
 
   open(mymodal: any) {
