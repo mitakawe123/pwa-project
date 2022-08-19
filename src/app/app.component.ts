@@ -25,7 +25,7 @@ export class AppComponent implements AfterViewInit, OnInit {
   isPrompt: boolean = false;
   subscription!: Subscription;
   browserRefresh: boolean = false;
-  firsttime: string | null;
+  // firsttime: string | null;
 
   @ViewChild('mymodal') mymodal: ElementRef | undefined;
 
@@ -57,7 +57,7 @@ export class AppComponent implements AfterViewInit, OnInit {
 
   onSubmit(): void {
     this.isPrompt = true;
-    if (this.isPrompt === true) {
+    if (this.isPrompt === true && 'serviceWorker' in navigator) {
       navigator.serviceWorker.register('ngsw-worker.js');
     }
   }
