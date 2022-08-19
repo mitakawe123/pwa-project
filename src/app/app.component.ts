@@ -64,9 +64,10 @@ export class AppComponent implements AfterViewInit, OnInit {
   ngAfterViewInit(): void {
     if (localStorage.getItem('firsttime') === 'true') {
       this.open(this.mymodal);
-    } else if (localStorage.getItem('firsttime') === 'false') {
-      this.modalService.dismissAll(this.mymodal);
     }
+    // else if (localStorage.getItem('firsttime') === 'false') {
+    //   this.modalService.dismissAll(this.mymodal);
+    // }
   }
 
   ngOnInit(): void {
