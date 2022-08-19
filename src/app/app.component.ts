@@ -62,7 +62,7 @@ export class AppComponent implements AfterViewInit, OnInit {
     }
     setTimeout(() => {
       this.modalService.dismissAll();
-    }, 250);
+    }, 750);
   }
 
   ngAfterViewInit(): void {
