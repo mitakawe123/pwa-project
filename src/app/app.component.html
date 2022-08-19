@@ -9,19 +9,11 @@
     ></button>
   </div>
   <div class="modal-body">
-    <p>Hello, World!</p>
+    <p>Hello, User!</p>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="onSubmit()">
-      Download to the screen
-    </button>
-    <button
-      type="button"
-      class="btn btn-outline-dark"
-      (click)="d('Cross click')"
-    >
-      Close
-    </button>
+    <button type="button" (click)="onSubmit()">Download to the screen</button>
+    <button type="button" (click)="d('Cross click')">Close</button>
   </div>
 </ng-template>
 
