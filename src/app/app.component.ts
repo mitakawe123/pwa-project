@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -14,15 +13,12 @@ export class AppComponent {
 
   onSubmit(): void {
     this.isPrompt = true;
-    ServiceWorkerModule.register('ngsw-worker.js', {
-      enabled: this.isPrompt,
-    });
+    if (this.isPrompt) {
+      navigator.serviceWorker.register('ngsw-worker.js');
+    }
   }
 
   cancelDownload(): void {
     this.isPrompt = false;
-    ServiceWorkerModule.register('ngsw-worker.js', {
-      enabled: this.isPrompt,
-    });
   }
 }
