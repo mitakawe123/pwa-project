@@ -23,7 +23,7 @@ export class AppComponent implements AfterViewInit {
   onSubmit(): void {
     this.isPrompt = true;
     if (this.isPrompt) {
-      navigator.serviceWorker.register('ngsw-worker.js');
+      // navigator.serviceWorker.register('ngsw-worker.js');
     }
   }
 
