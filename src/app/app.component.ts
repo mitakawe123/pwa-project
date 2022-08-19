@@ -37,11 +37,11 @@ export class AppComponent implements AfterViewInit, OnInit {
     config.backdrop = 'static';
     config.keyboard = false;
 
-    this.subscription = router.events.subscribe((event) => {
-      if (event instanceof NavigationStart) {
-        this.browserRefresh = !router.navigated;
-      }
-    });
+    // this.subscription = router.events.subscribe((event) => {
+    //   if (event instanceof NavigationStart) {
+    //     this.browserRefresh = !router.navigated;
+    //   }
+    // });
     //check if user is new
     this.firsttime = localStorage.getItem('firsttime');
 
@@ -65,9 +65,6 @@ export class AppComponent implements AfterViewInit, OnInit {
     if (localStorage.getItem('firsttime') === 'true') {
       this.open(this.mymodal);
     }
-    // else if (localStorage.getItem('firsttime') === 'false') {
-    //   this.modalService.dismissAll(this.mymodal);
-    // }
   }
 
   ngOnInit(): void {
