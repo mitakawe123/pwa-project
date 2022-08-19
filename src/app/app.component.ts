@@ -27,7 +27,7 @@ export class AppComponent implements AfterViewInit, OnInit {
   browserRefresh: boolean = false;
   // firsttime: string | null;
 
-  @ViewChild('mymodal') mymodal: ElementRef | undefined;
+  @ViewChild('mymodal') mymodal: any;
 
   constructor(
     config: NgbModalConfig,
@@ -59,8 +59,8 @@ export class AppComponent implements AfterViewInit, OnInit {
     this.isPrompt = true;
     if (this.isPrompt === true && 'serviceWorker' in navigator) {
       navigator.serviceWorker.register('ngsw-worker.js');
+      this.modalService.dismissAll(this.mymodal);
     }
-    this.isPrompt = false;
   }
 
   ngAfterViewInit(): void {
