@@ -59,7 +59,6 @@ export class AppComponent implements AfterViewInit, OnInit {
     this.isPrompt = true;
     if (this.isPrompt === true && 'serviceWorker' in navigator) {
       navigator.serviceWorker.register('ngsw-worker.js');
-      // this.modalService.dismissAll();
     }
   }
 
@@ -67,6 +66,7 @@ export class AppComponent implements AfterViewInit, OnInit {
     // if (localStorage.getItem('firsttime') === 'true') {
 
     // }
+
     this.open(this.mymodal);
   }
 
