@@ -43,15 +43,16 @@ export class AppComponent implements AfterViewInit, OnInit {
     // });
 
     //check if the user is new
-    this.firsttime = localStorage.getItem('firsttime');
 
-    if (
-      localStorage.getItem('firsttime') == null ||
-      localStorage.getItem('firsttime') == undefined
-    ) {
-      this.firsttime = 'true';
-      localStorage.setItem('firsttime', 'true');
-    } else localStorage.setItem('firsttime', 'false');
+    // this.firsttime = localStorage.getItem('firsttime');
+
+    // if (
+    //   localStorage.getItem('firsttime') == null ||
+    //   localStorage.getItem('firsttime') == undefined
+    // ) {
+    //   this.firsttime = 'true';
+    //   localStorage.setItem('firsttime', 'true');
+    // } else localStorage.setItem('firsttime', 'false');
   }
 
   onSubmit(): void {
