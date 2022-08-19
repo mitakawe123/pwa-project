@@ -25,7 +25,7 @@ export class AppComponent implements AfterViewInit, OnInit {
   isPrompt: boolean = false;
   subscription!: Subscription;
   browserRefresh: boolean = false;
-  // firsttime: string | null;
+  firsttime: string | null;
 
   @ViewChild('mymodal') mymodal: any;
 
@@ -42,17 +42,17 @@ export class AppComponent implements AfterViewInit, OnInit {
     //   }
     // });
 
-    //check if the user is new
+    // check if the user is new
 
-    // this.firsttime = localStorage.getItem('firsttime');
+    this.firsttime = localStorage.getItem('firsttime');
 
-    // if (
-    //   localStorage.getItem('firsttime') == null ||
-    //   localStorage.getItem('firsttime') == undefined
-    // ) {
-    //   this.firsttime = 'true';
-    //   localStorage.setItem('firsttime', 'true');
-    // } else localStorage.setItem('firsttime', 'false');
+    if (
+      localStorage.getItem('firsttime') == null ||
+      localStorage.getItem('firsttime') == undefined
+    ) {
+      this.firsttime = 'true';
+      localStorage.setItem('firsttime', 'true');
+    } else localStorage.setItem('firsttime', 'false');
   }
 
   onSubmit(): void {
@@ -60,15 +60,12 @@ export class AppComponent implements AfterViewInit, OnInit {
     // if (this.isPrompt === true) {
     // }
     navigator.serviceWorker.register('ngsw-worker.js');
-
   }
 
   ngAfterViewInit(): void {
-    // if (localStorage.getItem('firsttime') === 'true') {
-
-    // }
-
-    this.open(this.mymodal);
+    if (localStorage.getItem('firsttime') === 'true') {
+      this.open(this.mymodal);
+    }
   }
 
   ngOnInit(): void {
