@@ -27,7 +27,6 @@ export class AppComponent implements AfterViewInit, OnInit {
   browserRefresh: boolean = false;
   // firsttime: string | null;
 
-  
   @ViewChild('mymodal') mymodal: ElementRef | undefined;
 
   constructor(
@@ -64,9 +63,10 @@ export class AppComponent implements AfterViewInit, OnInit {
   }
 
   ngAfterViewInit(): void {
-    if (localStorage.getItem('firsttime') === 'true') {
-      this.open(this.mymodal);
-    }
+    // if (localStorage.getItem('firsttime') === 'true') {
+
+    // }
+    this.open(this.mymodal);
   }
 
   ngOnInit(): void {
