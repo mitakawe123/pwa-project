@@ -53,19 +53,16 @@ export class AppComponent implements AfterViewInit, OnInit {
     }
   }
 
-  // navigator.serviceWorker.getRegistrations().then( function(registrations) { for(let registration of registrations) { registration.unregister(); } });
-
   ngAfterViewInit(): void {
     this.open(this.mymodal);
   }
 
   ngOnInit(): void {
-    this.isPrompt = false;
-    // navigator.serviceWorker.getRegistrations().then(function (registrations) {
-    //   for (let registration of registrations) {
-    //     registration.unregister();
-    //   }
-    // });
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      for (let registration of registrations) {
+        registration.unregister();
+      }
+    });
   }
 
   open(mymodal: any) {
