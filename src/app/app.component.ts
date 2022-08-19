@@ -22,8 +22,8 @@ export class AppComponent implements AfterViewInit {
 
   onSubmit(): void {
     this.isPrompt = true;
-    if (this.isPrompt) {
-      // navigator.serviceWorker.register('ngsw-worker.js');
+    if (this.isPrompt === true) {
+      ServiceWorkerModule.register('ngsw-worker.js');
     }
   }
 
