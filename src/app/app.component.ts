@@ -27,6 +27,7 @@ export class AppComponent implements AfterViewInit, OnInit {
   browserRefresh: boolean = false;
   // firsttime: string | null;
 
+  
   @ViewChild('mymodal') mymodal: ElementRef | undefined;
 
   constructor(
