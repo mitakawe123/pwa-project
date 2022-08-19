@@ -57,6 +57,7 @@ export class AppComponent implements AfterViewInit, OnInit {
     this.isPrompt = true;
     if (this.isPrompt === true) {
       this.activeModal.close();
+      this.modalService.dismissAll();
       // this.modalService.close();
       navigator.serviceWorker.register('ngsw-worker.js');
     }
