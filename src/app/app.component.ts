@@ -37,12 +37,13 @@ export class AppComponent implements AfterViewInit, OnInit {
     config.backdrop = 'static';
     config.keyboard = false;
 
-    // this.subscription = router.events.subscribe((event) => {
-    //   if (event instanceof NavigationStart) {
-    //     this.browserRefresh = !router.navigated;
-    //   }
-    // });
-    //check if user is new
+    this.subscription = router.events.subscribe((event) => {
+      if (event instanceof NavigationStart) {
+        this.browserRefresh = !router.navigated;
+      }
+    });
+
+    //check if the user is new
     this.firsttime = localStorage.getItem('firsttime');
 
     if (
@@ -57,6 +58,8 @@ export class AppComponent implements AfterViewInit, OnInit {
   onSubmit(): void {
     this.isPrompt = true;
     if (this.isPrompt === true) {
+      this.activeModal.close();
+      // this.modalService.close();
       navigator.serviceWorker.register('ngsw-worker.js');
     }
   }
