@@ -60,9 +60,6 @@ export class AppComponent implements AfterViewInit, OnInit {
     if (this.isPrompt === true && 'serviceWorker' in navigator) {
       navigator.serviceWorker.register('ngsw-worker.js');
     }
-    setTimeout(() => {
-      this.modalService.dismissAll();
-    }, 750);
   }
 
   ngAfterViewInit(): void {
