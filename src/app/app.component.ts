@@ -1,31 +1,47 @@
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
+import { NavigationStart, Router } from '@angular/router';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import {
   NgbModal,
   NgbModalConfig,
   NgbActiveModal,
 } from '@ng-bootstrap/ng-bootstrap';
-
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
   providers: [ServiceWorkerModule, NgbModalConfig, NgbModal, NgbActiveModal],
 })
-export class AppComponent implements AfterViewInit {
+export class AppComponent implements AfterViewInit, OnInit {
   title = 'pwa-project';
   isPrompt: boolean = false;
+  subscription!: Subscription;
+  browserRefresh: boolean = false;
 
   @ViewChild('mymodal') mymodal: ElementRef | undefined;
 
   constructor(
     config: NgbModalConfig,
     private modalService: NgbModal,
-    private activeModal: NgbActiveModal
+    private activeModal: NgbActiveModal,
+    private router: Router
   ) {
     // customize default values of modals used by this component tree
     config.backdrop = 'static';
     config.keyboard = false;
+
+    this.subscription = router.events.subscribe((event) => {
+      if (event instanceof NavigationStart) {
+        this.browserRefresh = !router.navigated;
+      }
+    });
   }
 
   onSubmit(): void {
@@ -37,8 +53,19 @@ export class AppComponent implements AfterViewInit {
     }
   }
 
+  // navigator.serviceWorker.getRegistrations().then( function(registrations) { for(let registration of registrations) { registration.unregister(); } });
+
   ngAfterViewInit(): void {
     this.open(this.mymodal);
+  }
+
+  ngOnInit(): void {
+    this.isPrompt = false;
+    // navigator.serviceWorker.getRegistrations().then(function (registrations) {
+    //   for (let registration of registrations) {
+    //     registration.unregister();
+    //   }
+    // });
   }
 
   open(mymodal: any) {
