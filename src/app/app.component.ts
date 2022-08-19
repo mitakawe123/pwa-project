@@ -5,7 +5,7 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import { NavigationStart, Router } from '@angular/router';
+// import { NavigationStart, Router } from '@angular/router';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import {
   NgbModal,
@@ -13,6 +13,7 @@ import {
   NgbActiveModal,
 } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -30,18 +31,17 @@ export class AppComponent implements AfterViewInit, OnInit {
 
   constructor(
     config: NgbModalConfig,
-    private modalService: NgbModal,
-    private activeModal: NgbActiveModal,
-    private router: Router
-  ) {
+    private modalService: NgbModal // private activeModal: NgbActiveModal,
+  ) // private router: Router
+  {
     config.backdrop = 'static';
     config.keyboard = false;
 
-    this.subscription = router.events.subscribe((event) => {
-      if (event instanceof NavigationStart) {
-        this.browserRefresh = !router.navigated;
-      }
-    });
+    // this.subscription = router.events.subscribe((event) => {
+    //   if (event instanceof NavigationStart) {
+    //     this.browserRefresh = !router.navigated;
+    //   }
+    // });
 
     //check if the user is new
     this.firsttime = localStorage.getItem('firsttime');
@@ -58,15 +58,7 @@ export class AppComponent implements AfterViewInit, OnInit {
   onSubmit(): void {
     this.isPrompt = true;
     if (this.isPrompt === true) {
-      this.activeModal.close();
-      // this.modalService.close();
       navigator.serviceWorker.register('ngsw-worker.js');
-    }
-  }
-
-  ngAfterViewInit(): void {
-    if (localStorage.getItem('firsttime') === 'true') {
-      this.open(this.mymodal);
     }
   }
 
@@ -76,6 +68,12 @@ export class AppComponent implements AfterViewInit, OnInit {
         registration.unregister();
       }
     });
+  }
+
+  ngAfterViewInit(): void {
+    if (localStorage.getItem('firsttime') === 'true') {
+      this.open(this.mymodal);
+    }
   }
 
   open(mymodal: any) {
