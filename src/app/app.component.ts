@@ -26,6 +26,7 @@ export class AppComponent implements AfterViewInit, OnInit {
   browserRefresh: boolean = false;
 
   @ViewChild('mymodal') mymodal: ElementRef | undefined;
+  firsttime: string | null;
 
   constructor(
     config: NgbModalConfig,
@@ -33,7 +34,6 @@ export class AppComponent implements AfterViewInit, OnInit {
     private activeModal: NgbActiveModal,
     private router: Router
   ) {
-    // customize default values of modals used by this component tree
     config.backdrop = 'static';
     config.keyboard = false;
 
@@ -42,6 +42,15 @@ export class AppComponent implements AfterViewInit, OnInit {
         this.browserRefresh = !router.navigated;
       }
     });
+    this.firsttime = localStorage.getItem('firsttime');
+
+    if (
+      localStorage.getItem('firsttime') == null ||
+      localStorage.getItem('firsttime') == undefined
+    ) {
+      this.firsttime = 'true';
+      localStorage.setItem('firsttime', 'true');
+    } else localStorage.setItem('firsttime', 'false');
   }
 
   onSubmit(): void {
@@ -54,7 +63,9 @@ export class AppComponent implements AfterViewInit, OnInit {
   }
 
   ngAfterViewInit(): void {
-    this.open(this.mymodal);
+    if (localStorage.getItem('firsttime') === 'true') {
+      this.open(this.mymodal);
+    }
   }
 
   ngOnInit(): void {
